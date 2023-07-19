@@ -15,10 +15,10 @@ describe('testing useFetch', () => {
     expect(loading).not.toBeFalsy();
 
     await waitFor(() => {
-      const { data, loading, error } = result.result.current;
+      const { data, loading, dogError } = result.result.current;
       expect(loading).toBeFalsy();
 
-      expect(error).toBeNull();
+      expect(dogError).toBeNull();
 
       expect(data).not.toBeNull();
       expect(data.length).toBe(10);
@@ -39,12 +39,12 @@ describe('testing useFetch', () => {
       useFetch('https://api.thedogapi.com/v1/breeds?limit=10&page=0')
     );
     await waitFor(() => {
-      const { data, loading, error } = result.result.current;
+      const { data, loading, dogError } = result.result.current;
       expect(loading).toBeFalsy();
 
       expect(data).toStrictEqual([]);
 
-      expect(error).toBe('Testing the Error');
+      expect(dogError).toBe('Testing the Error');
     });
   });
 });

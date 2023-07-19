@@ -6,7 +6,7 @@ import { Dog } from '../components/types';
 export const useFetch = (url: string) => {
   const [data, setData] = useState<Array<Dog>>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [dogError, dogDogError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,17 +14,17 @@ export const useFetch = (url: string) => {
       const data = await response.json();
 
       if (response.status !== 200) {
-        setError('Error fetching data.');
+        dogDogError('Error fetching data.');
       }
       setData(data);
       setLoading(false);
     };
 
     fetchData().catch((error) => {
-      setError(error.message);
+      dogDogError(error.message);
       setLoading(false);
     });
   }, [url]);
 
-  return { data, loading, error };
+  return { data, loading, dogError };
 };
